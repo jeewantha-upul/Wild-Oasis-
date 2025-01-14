@@ -3,11 +3,6 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import styled from "styled-components";
 
-const Main = styled.main`
-  background-color: var(--color-grey-50);
-  padding: 4rem 4.8rem 6.4rem;
-`;
-
 const StyledAppLayout = styled.div`
   display: grid;
   grid-template-columns: 26rem 1fr;
@@ -15,11 +10,16 @@ const StyledAppLayout = styled.div`
   height: 100vh;
 `;
 
+const Main = styled.main`
+  background-color: var(--color-grey-50);
+  padding: 4rem 4.8rem 6.4rem;
+`;
+
 function AppLayout() {
   return (
     <StyledAppLayout>
-      <Sidebar />
       <Header />
+      <Sidebar />
       <Main>
         <Outlet />
       </Main>
