@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCabin } from "../../services/apiCabins";
 import toast from "react-hot-toast";
 import StyledFormRow from "./FormRow";
+import Spinner from "../../ui/Spinner";
 
 const FormRow = styled.div`
   display: grid;
@@ -60,7 +61,7 @@ function CreateCabinForm() {
   });
 
   const onSubmit = (data) => {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   };
 
   return (
@@ -135,6 +136,7 @@ function CreateCabinForm() {
         <FileInput
           id="image"
           accept="image/*"
+          type="file"
           {...register("image", { required: "This field is required" })}
         />
       </StyledFormRow>
@@ -144,6 +146,7 @@ function CreateCabinForm() {
         <Button variation="secondary" type="reset" disabled={isCreating}>
           Cancel
         </Button>
+        {isCreating && <Spinner />}
         <Button disabled={isCreating}>Add cabin</Button>
       </FormRow>
     </Form>
