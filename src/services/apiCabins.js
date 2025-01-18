@@ -59,7 +59,8 @@ export const createEditCabin = async (newCabin, id) => {
 
   // ---------------------------------  upload image ----------------------------------------------------------------------------------------
   // Upload file using standard upload
-
+  // if the uploading object has an image, we dont need to upload it again into BsBucket,its already there
+  if (hasImagePath) return data;
   const { error: storageError } = await supabase.storage
     .from("cabins")
     .upload(imageName, newCabin.image);
